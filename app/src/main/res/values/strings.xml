@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Rarog-CountBook</string>
+    <string name="addCounterNameHint">Your Counter Name</string>
+    <string name="addCounterNameTextView">Counter Name</string>
+    <string name="addCounterCommentHint">Your Comment</string>
+    <string name="addCounterCommentTextView">Counter Comment</string>
+    <string name="addCounterValueHinter">Initial Value</string>
+    <string name="addCounterValueTextView">Initial Counter Value</string>
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/list_item_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/increment_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_add_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/decrement_button"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:id="@+id/decrement_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@id/increment_button"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_remove_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/reset_button"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:id="@+id/reset_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@id/decrement_button"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_refresh_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/view_button"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:id="@+id/view_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@id/reset_button"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_remove_red_eye_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/edit_button"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@id/view_button"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_edit_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/delete_button"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="35dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@id/edit_button"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="0dp"
+        android:drawableTop="@drawable/ic_delete_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
