@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,7 +25,12 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+//TODO: CLEANUP!!
+//TODO: MORE INPUT CHECKING
+//TODO: CAP INT VALUE SIZE OR IT WILL CRASH
+
+
+public class MainActivity extends AppCompatActivity {
     private static final String FILENAME = "file.sav";
     private static final int ADD_COUNTER_ACTIVITY = 1;
     private static final int EDIT_COUNTER_ACTIVITY = 2;
@@ -57,6 +64,7 @@ public class MainActivity extends Activity {
 
         loadFromFile();
 
+
         final Button addCounterButton = (Button) findViewById(R.id.addCounterButton);
         addCounterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +74,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        counterListView = findViewById(R.id.counterListView);
+        counterListView = (ListView) findViewById(R.id.counterListView);
     }
 
     @Override

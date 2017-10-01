@@ -7,7 +7,6 @@
     tools:context="com.example.rarog_countbook.MainActivity"
     android:orientation="horizontal">
 
-
     <Button
         android:id="@+id/addCounterButton"
         android:drawableTop="@drawable/ic_add_black_24dp"
@@ -16,18 +15,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="2dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="2dp" />
 
     <ListView
         android:id="@+id/counterListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:dividerHeight="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/addCounterButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/addCounterButton"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
