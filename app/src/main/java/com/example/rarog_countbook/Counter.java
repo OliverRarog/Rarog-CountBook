@@ -30,12 +30,30 @@ public class Counter {
         this.counterName = counterName;
     }
 
+    public int getCurrentValue() {
+        return currentValue;
+    }
+
+    public String getCounterName() {
+        return counterName;
+    }
+
+    public String getCounterComment() {
+        return comment;
+    }
+
+    public Date getCounterDate() {
+        return date;
+    }
+
     public void incrementCurrentValue() {
         currentValue += 1;
     }
 
     public void decrementCurrentValue() {
-        currentValue -= 1;
+        if(currentValue >= 1) {
+            currentValue -= 1;
+        }
     }
 
     public void resetCurrentValue() {

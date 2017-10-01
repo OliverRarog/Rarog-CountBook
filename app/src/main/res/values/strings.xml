@@ -6,4 +6,5 @@
     <string name="addCounterCommentTextView">Counter Comment</string>
     <string name="addCounterValueHinter">Initial Value</string>
     <string name="addCounterValueTextView">Initial Counter Value</string>
+    <string name="required"> * Required</string>
 </resources>

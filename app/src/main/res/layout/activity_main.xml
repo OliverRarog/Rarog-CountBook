@@ -14,25 +14,20 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.993"
-        app:layout_constraintTop_toBottomOf="@+id/counterListView" />
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ListView
         android:id="@+id/counterListView"
-        android:layout_width="382dp"
-        android:layout_height="454dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/addCounterButton"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        android:layout_marginTop="0dp" />
 </android.support.constraint.ConstraintLayout>

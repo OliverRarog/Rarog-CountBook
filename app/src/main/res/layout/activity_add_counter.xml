@@ -14,8 +14,20 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/addCounterNameTextView"
+        android:textColor="@color/colorBlack"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/NameRequiredText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/required"
+        android:textColor="@color/colorRed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/addCounterName" />
 
     <EditText
         android:id="@+id/counterNameEditText"
@@ -36,6 +48,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/addCounterCommentTextView"
+        android:textColor="@color/colorBlack"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/counterNameEditText" />
 
@@ -57,6 +70,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/addCounterValueTextView"
+        android:textColor="@color/colorBlack"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/counterCommentEditText" />
 
@@ -70,5 +84,18 @@
         android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addCounterValue" />
+
+
+
+    <TextView
+        android:id="@+id/InitialValueRequiredText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="@color/colorRed"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toRightOf="@id/addCounterValue"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/counterCommentEditText" />
 
 </android.support.constraint.ConstraintLayout>
