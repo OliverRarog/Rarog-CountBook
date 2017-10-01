@@ -25,11 +25,11 @@ public class ViewCounterActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // gets the provided information about the counter
-        String name = intent.getStringExtra("counterName");
-        String comment = intent.getStringExtra("counterComment");
-        String date = intent.getStringExtra("counterDate");
-        String currentValue = intent.getStringExtra("counterCurrentValue");
-        String initialValue = intent.getStringExtra("counterInitialValue");
+        String name = getNameFromIntent(intent);
+        String comment = getCommentFromIntent(intent);
+        String date = getDateFromIntent(intent);
+        String currentValue = getCurrentValueFromIntent(intent);
+        String initialValue = getInitialValueFromIntent(intent);
 
         // initializes the TextView elements
         TextView nameText = (TextView) findViewById(R.id.viewNameField);
@@ -44,5 +44,53 @@ public class ViewCounterActivity extends AppCompatActivity {
         dateText.setText(date);
         currentValueText.setText(currentValue);
         initialValueText.setText(initialValue);
+    }
+
+    /**
+     * Gets the counter name from an intent's extra data
+     * @param intent Intent which holds a counter's name
+     * @return String of the counter's name
+     */
+    private String getNameFromIntent(Intent intent) {
+        return intent.getStringExtra("counterName");
+    }
+
+    /**
+     * Gets the counter comment from an intent's extra data
+     * @param intent Intent which holds a counter's comment
+     * @return String of the counter's comment
+     */
+    private String getCommentFromIntent(Intent intent) {
+        return intent.getStringExtra("counterComment");
+    }
+
+    /**
+     * Gets the counter current value from an intent's extra data
+     * @param intent Intent which holds a counter's current value
+     * @return Int of the counter's current value
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private String getCurrentValueFromIntent(Intent intent) {
+        return intent.getStringExtra("counterCurrentValue");
+    }
+
+    /**
+     * Gets the counter initial value from an intent's extra data
+     * @param intent Intent which holds a counter's initial value
+     * @return Int of the counter's initial value
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private String getInitialValueFromIntent(Intent intent) {
+        return intent.getStringExtra("counterInitialValue");
+    }
+
+    /**
+     * Gets the id of the counter from the intent's extra data
+     * @param intent Intent which holds a counter's id
+     * @return Int of the counter's id
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private String getDateFromIntent(Intent intent) {
+        return intent.getStringExtra("counterDate");
     }
 }
