@@ -26,6 +26,7 @@ public class AddCounterActivity extends AppCompatActivity {
     EditText counterValueEditText;
 
 
+
     /* idea to disable button until required editText fields filled
     taken from
     https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty
@@ -111,9 +112,16 @@ public class AddCounterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // gets the user's entered information
+                Integer value = 0;
                 String nameText = counterNameEditText.getText().toString();
                 String commentText = counterCommentEditText.getText().toString();
-                Integer value = Integer.parseInt(counterValueEditText.getText().toString());
+                try {
+                    value = Integer.parseInt(counterValueEditText.getText().toString());
+                }
+                catch(NumberFormatException e) {
+                    // if user enters too large of number, cap the number to max ineger size
+                    value = value.MAX_VALUE;
+                }
 
                 // puts the extra data into the Intent
                 Intent intent = getIntent();

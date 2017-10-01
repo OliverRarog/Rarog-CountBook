@@ -76,7 +76,9 @@ public class Counter {
      * Increments the current displayed value by 1, updates date
      */
     public void incrementCurrentValue() {
-        currentValue += 1;
+        if (currentValue < Integer.MAX_VALUE) {
+            currentValue += 1;
+        }
         updateDate();
     }
 

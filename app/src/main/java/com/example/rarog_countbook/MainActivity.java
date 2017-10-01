@@ -23,9 +23,6 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-//TODO: CLEANUP!!
-//TODO: MORE INPUT CHECKING
-//TODO: CAP INT VALUE SIZE OR IT WILL CRASH
 
 /**
  * The main activity class, its the first activity to launch and all other activities
