@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
-    private ArrayList<Counter> counterList = new ArrayList<Counter>();
+    private ArrayList<Counter> counterList = new ArrayList<>();
     private Context context;
 
     public CounterRowAdapter(ArrayList<Counter> counterList, Context context) {
@@ -111,6 +111,12 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         });
 
         return view;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+        //saveInFile()
     }
 
 }

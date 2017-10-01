@@ -1,18 +1,36 @@
 package com.example.rarog_countbook;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+    private static final String FILENAME = "file.sav";
     private static final int ADD_COUNTER_ACTIVITY = 1;
-    ArrayList<Counter> counterList = new ArrayList<Counter>();
+
+    ListView counterListView;
+
+    ArrayList<Counter> counterList = new ArrayList<>();
+    private CounterRowAdapter adapter;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -22,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             int initialValue = data.getExtras().getInt("initialValue");
 
             counterList.add(new Counter(initialValue, nameText, commentText));
+            adapter.notifyDataSetChanged();
+            saveInFile();
         }
     }
 
@@ -29,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loadFromFile();
 
         final Button addCounterButton = (Button) findViewById(R.id.addCounterButton);
         addCounterButton.setOnClickListener(new View.OnClickListener() {
@@ -39,13 +61,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        CounterRowAdapter adapter = new CounterRowAdapter(counterList, this);
-
-        ListView lView = (ListView) findViewById(R.id.counterListView);
-        lView.setAdapter(adapter);
-
-
-
+        counterListView = findViewById(R.id.counterListView);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter = new CounterRowAdapter(counterList, this);
+        counterListView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveInFile();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveInFile();
+    }
+
+    private void loadFromFile() {
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+
+            //Taken from https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            // 2017-09-19
+            Type listType = new TypeToken<ArrayList<Counter>>(){}.getType();
+            counterList = gson.fromJson(in, listType);
+            if(counterList == null) {
+                counterList = new ArrayList<>();
+            }
+        }
+        catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            counterList = new ArrayList<>();
+        }
+    }
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(counterList, out);
+            out.flush();
+
+            fos.close();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
+    }
+
 }
