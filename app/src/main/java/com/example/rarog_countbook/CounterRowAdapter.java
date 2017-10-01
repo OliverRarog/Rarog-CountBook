@@ -60,7 +60,7 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         counterRowName.setText(counter.getCounterName());
 
         TextView counterRowComment = view.findViewById(R.id.counterRowComment);
-        counterRowComment.setText(counter.getCounterComment());
+        counterRowComment.setText(" - " + counter.getCounterComment());
 
 
 
@@ -133,6 +133,7 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
 
         return view;
     }
+
 
     public  void onActivityResult(Intent data) {
         Counter counter = counterList.get(Integer.parseInt(data.getStringExtra("counterId")));

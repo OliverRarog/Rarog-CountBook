@@ -77,15 +77,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
         saveInFile();
+        super.onPause();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        saveInFile();
+    private boolean isCounterListEmpty() {
+        return (counterList == null || counterList.isEmpty());
     }
 
     private void loadFromFile() {
@@ -108,7 +106,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void saveInFile() {
+    public void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
 
