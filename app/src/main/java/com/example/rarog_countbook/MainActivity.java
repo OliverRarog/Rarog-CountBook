@@ -1,12 +1,10 @@
 package com.example.rarog_countbook;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,9 +27,21 @@ import java.util.ArrayList;
 //TODO: MORE INPUT CHECKING
 //TODO: CAP INT VALUE SIZE OR IT WILL CRASH
 
-
+/**
+ * The main activity class, its the first activity to launch and all other activities
+ * are a child of this one. The main purpose of this activity is to display all the counters
+ * and their buttons through a custom adapter and to be able to create a new counter.
+ * @author Oliver Rarog
+ * @version 1.0
+ * @see AddCounterActivity
+ * @see EditCounterActivity
+ * @see CounterRowAdapter
+ *
+ */
 public class MainActivity extends AppCompatActivity {
-    private static final String FILENAME = "file.sav";
+    private static final String FILENAME = "file.sav"; // file where counter data is stored
+
+    // request code for child activities
     private static final int ADD_COUNTER_ACTIVITY = 1;
     private static final int EDIT_COUNTER_ACTIVITY = 2;
 
@@ -40,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Counter> counterList = new ArrayList<>();
     private CounterRowAdapter adapter;
 
+    /**
+     * Called when startActivityForResult() finishes, used to getExtras put in by child activity
+     * @param requestCode The activity code of the activity
+     * @param resultCode The code the activity returned
+     * @param data Intent created when activity was launched, holds extra data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == ADD_COUNTER_ACTIVITY) {
@@ -62,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFromFile();
-
+        loadFromFile(); // load old counter list from file
 
         final Button addCounterButton = (Button) findViewById(R.id.addCounterButton);
         addCounterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // when create counter button is pushed, launch AddCounterActivity
                 Intent addCounterIntent = new Intent(view.getContext(), AddCounterActivity.class);
                 startActivityForResult(addCounterIntent, ADD_COUNTER_ACTIVITY);
             }
@@ -76,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         counterListView = (ListView) findViewById(R.id.counterListView);
     }
+
 
     @Override
     protected void onStart() {
@@ -86,14 +103,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        // in activity lifecycle, onPause is called whenever activity is not in foreground (including
+        // when the user exits the app) therefore, we save counter list in case the activity is
+        // not going to start again
         saveInFile();
         super.onPause();
     }
 
-    private boolean isCounterListEmpty() {
-        return (counterList == null || counterList.isEmpty());
-    }
-
+    /**
+     * Using GSON, method loads the counterList from a file saved on device
+     * @throws FileNotFoundException If there is no file to load on device create a new counterList
+     */
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -114,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Using GSON, method saves the counterList to a file saved on device
+     * @throws IOException If app cannot open or create new file, will create RuntimeException
+     */
     public void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
