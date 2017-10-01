@@ -7,4 +7,5 @@
     <string name="addCounterValueHinter">Initial Value</string>
     <string name="addCounterValueTextView">Initial Counter Value</string>
     <string name="required"> * Required</string>
+    <string name="create_counter_text_name">Create Counter</string>
 </resources>
