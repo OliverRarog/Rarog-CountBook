@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Using GSON, method loads the counterList from a file saved on device
-     * @throws FileNotFoundException If there is no file to load on device create a new counterList
      */
     private void loadFromFile() {
         try {
@@ -133,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Using GSON, method saves the counterList to a file saved on device
-     * @throws IOException If app cannot open or create new file, will create RuntimeException
      */
     public void saveInFile() {
         try {

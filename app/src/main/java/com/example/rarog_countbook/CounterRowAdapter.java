@@ -31,7 +31,7 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
      * @param counterList The counter list supplied that you want to display
      * @param context The Context of the activity which uses this adapter
      */
-    public CounterRowAdapter(ArrayList<Counter> counterList, Context context) {
+    CounterRowAdapter(ArrayList<Counter> counterList, Context context) {
         this.counterList = counterList;
         this.context = context;
     }
@@ -161,8 +161,8 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
      * by child activity and uses it to update the current counter with new information
      * @param data Intent created by the child activity, contains user inputted information
      */
-    public void onActivityResult(Intent data) {
-        int id = 0;
+    void onActivityResult(Intent data) {
+        int id;
         try{
             id = getIdFromIntent(data);
         }

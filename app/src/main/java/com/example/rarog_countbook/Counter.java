@@ -22,7 +22,7 @@ public class Counter {
      * @param counterName the given name of the counter
      * @param comment optional - if user wants to add a comment to the counter
      */
-    public Counter(int initialValue, String counterName, String comment) {
+    Counter(int initialValue, String counterName, String comment) {
         this.initialValue = initialValue;
         currentValue = initialValue;
         date = new Date();
@@ -34,7 +34,7 @@ public class Counter {
      * Gets the current value of the counter
      * @return Current counter value
      */
-    public int getCurrentValue() {
+    int getCurrentValue() {
         return currentValue;
     }
 
@@ -42,7 +42,7 @@ public class Counter {
      * Gets the initial value of the counter
      * @return Initial value
      */
-    public int getInitialValue() {
+    int getInitialValue() {
         return initialValue;
     }
 
@@ -50,7 +50,7 @@ public class Counter {
      * Gets the name of the counter
      * @return Counter name
      */
-    public String getCounterName() {
+    String getCounterName() {
         return counterName;
     }
 
@@ -59,7 +59,7 @@ public class Counter {
      * @return Counter comment
      *
      */
-    public String getCounterComment() {
+    String getCounterComment() {
         return comment;
     }
 
@@ -68,14 +68,14 @@ public class Counter {
      * @return Counter date last edited
      *
      */
-    public Date getCounterDate() {
+    Date getCounterDate() {
         return date;
     }
 
     /**
      * Increments the current displayed value by 1, updates date
      */
-    public void incrementCurrentValue() {
+    void incrementCurrentValue() {
         if (currentValue < Integer.MAX_VALUE) {
             currentValue += 1;
         }
@@ -85,7 +85,7 @@ public class Counter {
     /**
      * Decrements the current displayed value by 1, updates date
      */
-    public void decrementCurrentValue() {
+    void decrementCurrentValue() {
         if(currentValue >= 1) {
             currentValue -= 1;
             updateDate();
@@ -95,7 +95,7 @@ public class Counter {
     /**
      * Resets the current value back to the initial value, updates date
      */
-    public void resetCurrentValue() {
+    void resetCurrentValue() {
         currentValue = initialValue;
         updateDate();
     }
@@ -104,7 +104,7 @@ public class Counter {
      * Changes the counters name, updates date
      * @param newName The new name you want to call the counter
      */
-    public void editCounterName(String newName) {
+    void editCounterName(String newName) {
         counterName = newName;
         updateDate();
     }
@@ -113,7 +113,7 @@ public class Counter {
      * Changes the current displayed value of the counter, updates date
      * @param newValue New number you want to set the current value, must be non-negative integer
      */
-    public void editCurrentValue(int newValue) {
+    void editCurrentValue(int newValue) {
         if(newValue >= 0) {
             currentValue = newValue;
             updateDate();
@@ -124,7 +124,7 @@ public class Counter {
      * Changes the initial value of the counter, updates date
      * @param newValue New number you want to set the initial value, must be non-negative integer
      */
-    public void editInitialValue(int newValue) {
+    void editInitialValue(int newValue) {
         if(newValue >= 0) {
             initialValue = newValue;
             updateDate();
@@ -135,7 +135,7 @@ public class Counter {
      * Changes the counters comment, updates date
      * @param newComment New string you want to set the comment to
      */
-    public void editComment(String newComment) {
+    void editComment(String newComment) {
         comment = newComment;
         updateDate();
     }

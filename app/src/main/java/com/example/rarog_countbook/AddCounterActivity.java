@@ -110,7 +110,7 @@ public class AddCounterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // gets the user's entered information
-                Integer value = 0;
+                Integer value;
                 String nameText = counterNameEditText.getText().toString();
                 String commentText = counterCommentEditText.getText().toString();
                 try {
@@ -118,7 +118,7 @@ public class AddCounterActivity extends AppCompatActivity {
                 }
                 catch(NumberFormatException e) {
                     // if user enters too large of number, cap the number to max ineger size
-                    value = value.MAX_VALUE;
+                    value = Integer.MAX_VALUE;
                 }
 
                 // puts the extra data into the Intent
