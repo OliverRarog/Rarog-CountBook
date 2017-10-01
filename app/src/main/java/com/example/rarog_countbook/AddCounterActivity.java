@@ -25,8 +25,6 @@ public class AddCounterActivity extends AppCompatActivity {
     EditText counterCommentEditText;
     EditText counterValueEditText;
 
-
-
     /* idea to disable button until required editText fields filled
     taken from
     https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty
