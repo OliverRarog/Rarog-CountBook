@@ -8,4 +8,9 @@
     <string name="addCounterValueTextView">Initial Counter Value</string>
     <string name="required"> * Required</string>
     <string name="create_counter_text_name">Create Counter</string>
+    <string name="name">Name:</string>
+    <string name="comment">Comment:</string>
+    <string name="date_last_edited">Date last edited:</string>
+    <string name="current_value">Current Value:</string>
+    <string name="initial_value">Initial Value:</string>
 </resources>

@@ -20,11 +20,11 @@ public class ViewCounterActivity extends AppCompatActivity {
         String currentValue = intent.getStringExtra("counterCurrentValue");
         String initialValue = intent.getStringExtra("counterInitialValue");
 
-        TextView nameText = (TextView) findViewById(R.id.nameField);
-        TextView commentText = (TextView) findViewById(R.id.commentField);
-        TextView dateText = (TextView) findViewById(R.id.dateField);
-        TextView currentValueText = (TextView) findViewById(R.id.currentValueField);
-        TextView initialValueText = (TextView) findViewById(R.id.initialValueField);
+        TextView nameText = (TextView) findViewById(R.id.viewNameField);
+        TextView commentText = (TextView) findViewById(R.id.viewCommentField);
+        TextView dateText = (TextView) findViewById(R.id.viewDateField);
+        TextView currentValueText = (TextView) findViewById(R.id.viewCurrentValueField);
+        TextView initialValueText = (TextView) findViewById(R.id.viewInitialValueField);
 
         nameText.setText(name);
         commentText.setText(comment);

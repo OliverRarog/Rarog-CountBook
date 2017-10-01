@@ -1,7 +1,9 @@
 package com.example.rarog_countbook;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
  */
 
 public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
+    private static final int EDIT_COUNTER_ACTIVITY = 2;
+
     private ArrayList<Counter> counterList = new ArrayList<>();
     private Context context;
 
@@ -108,6 +112,14 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         editButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, EditCounterActivity.class);
+                intent.putExtra("counterId", String.valueOf(i));
+                intent.putExtra("counterName", counter.getCounterName());
+                intent.putExtra("counterComment", counter.getCounterComment());
+                intent.putExtra("counterCurrentValue", String.valueOf(counter.getCurrentValue()));
+                intent.putExtra("counterInitialValue", String.valueOf(counter.getInitialValue()));
+
+                ((Activity) context).startActivityForResult(intent, EDIT_COUNTER_ACTIVITY );
             }
         });
 
@@ -122,12 +134,28 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         return view;
     }
 
+    public  void onActivityResult(Intent data) {
+        Counter counter = counterList.get(Integer.parseInt(data.getStringExtra("counterId")));
 
+        String newName = data.getStringExtra("counterName");
+        String newComment = data.getStringExtra("counterComment");
+        String newCurrentValue = data.getStringExtra("counterCurrentValue");
+        String newInitialValue = data.getStringExtra("counterInitialValue");
 
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-
+        if(!"".equals(newName.trim())) {
+            counter.editCounterName(newName);
+        }
+        if("".equals(newComment.trim())) {
+            counter.editComment("");
+        }
+        else {
+            counter.editComment(newComment);
+        }
+        if(!"".equals(newCurrentValue.trim())) {
+            counter.editCurrentValue(Integer.parseInt(newCurrentValue));
+        }
+        if (!"".equals(newInitialValue.trim())) {
+            counter.editInitialValue(Integer.parseInt(newInitialValue));
+        }
     }
-
 }

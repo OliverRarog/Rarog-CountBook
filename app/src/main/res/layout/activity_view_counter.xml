@@ -7,98 +7,98 @@
     tools:context="com.example.rarog_countbook.ViewCounterActivity">
 
     <TextView
-        android:id="@+id/nameText"
+        android:id="@+id/viewNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Name:"
+        android:text="@string/name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nameField"
+        android:id="@+id/viewNameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
-        app:layout_constraintLeft_toRightOf="@+id/nameText"
+        app:layout_constraintLeft_toRightOf="@+id/viewNameText"
         android:layout_marginLeft="99dp" />
 
     <TextView
-        android:id="@+id/commentText"
+        android:id="@+id/viewCommentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="Comment:"
+        android:text="@string/comment"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+        app:layout_constraintTop_toBottomOf="@+id/viewNameText" />
 
     <TextView
-        android:id="@+id/commentField"
+        android:id="@+id/viewCommentField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/nameField"
-        app:layout_constraintLeft_toRightOf="@+id/commentText"
+        app:layout_constraintTop_toBottomOf="@+id/viewNameField"
+        app:layout_constraintLeft_toRightOf="@+id/viewCommentText"
         android:layout_marginLeft="76dp" />
 
     <TextView
-        android:id="@+id/dateText"
+        android:id="@+id/viewDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="Date last edited:"
+        android:text="@string/date_last_edited"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/commentText" />
+        app:layout_constraintTop_toBottomOf="@+id/viewCommentText" />
 
     <TextView
-        android:id="@+id/dateField"
+        android:id="@+id/viewDateField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/commentField"
-        app:layout_constraintLeft_toRightOf="@+id/dateText"
+        app:layout_constraintTop_toBottomOf="@+id/viewCommentField"
+        app:layout_constraintLeft_toRightOf="@+id/viewDateText"
         android:layout_marginLeft="38dp" />
 
     <TextView
-        android:id="@+id/currentValueText"
+        android:id="@+id/viewCurrentValueText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Value:"
+        android:text="@string/current_value"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+        app:layout_constraintTop_toBottomOf="@+id/viewDateText" />
 
 
     <TextView
-        android:id="@+id/currentValueField"
+        android:id="@+id/viewCurrentValueField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/currentValueText"
+        app:layout_constraintLeft_toRightOf="@+id/viewCurrentValueText"
         android:layout_marginLeft="53dp"
         android:layout_marginTop="9dp"
-        app:layout_constraintTop_toBottomOf="@+id/dateField" />
+        app:layout_constraintTop_toBottomOf="@+id/viewDateField" />
 
     <TextView
-        android:id="@+id/initialValueText"
+        android:id="@+id/viewInitialValueText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Initial Value:"
+        android:text="@string/initial_value"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/currentValueText" />
+        app:layout_constraintTop_toBottomOf="@+id/viewCurrentValueText" />
 
     <TextView
-        android:id="@+id/initialValueField"
+        android:id="@+id/viewInitialValueField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        app:layout_constraintTop_toBottomOf="@+id/currentValueField"
-        app:layout_constraintLeft_toRightOf="@+id/initialValueText"
+        app:layout_constraintTop_toBottomOf="@+id/viewCurrentValueField"
+        app:layout_constraintLeft_toRightOf="@+id/viewInitialValueText"
         android:layout_marginLeft="65dp" />
 </android.support.constraint.ConstraintLayout>

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
     private static final String FILENAME = "file.sav";
     private static final int ADD_COUNTER_ACTIVITY = 1;
+    private static final int EDIT_COUNTER_ACTIVITY = 2;
 
     ListView counterListView;
 
@@ -42,6 +43,10 @@ public class MainActivity extends Activity {
             counterList.add(new Counter(initialValue, nameText, commentText));
             adapter.notifyDataSetChanged();
             saveInFile();
+        }
+
+        if (resultCode == RESULT_OK && requestCode == EDIT_COUNTER_ACTIVITY) {
+            adapter.onActivityResult(data);
         }
     }
 
