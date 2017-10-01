@@ -65,7 +65,7 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         TextView counterRowValue = view.findViewById(R.id.counterRowValue);
         counterRowValue.setText(Integer.toString(counter.getCurrentValue()));
 
-        TextView counterRowName = view.findViewById(R.id.counterRowName);
+        final TextView counterRowName = view.findViewById(R.id.counterRowName);
         counterRowName.setText(counter.getCounterName());
 
         TextView counterRowComment = view.findViewById(R.id.counterRowComment);
@@ -112,11 +112,12 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewCounterActivity.class);
-                intent.putExtra("counterName", counter.getCounterName());
-                intent.putExtra("counterComment", counter.getCounterComment());
-                intent.putExtra("counterDate", counter.getCounterDate().toString());
-                intent.putExtra("counterCurrentValue", String.valueOf(counter.getCurrentValue()));
-                intent.putExtra("counterInitialValue", String.valueOf(counter.getInitialValue()));
+
+                putNameInIntent(intent, counter.getCounterName());
+                putCommentInIntent(intent, counter.getCounterComment());
+                putCurrentValueInIntent(intent, counter.getCurrentValue());
+                putInitialValueInIntent(intent, counter.getInitialValue());
+                putDateInIntent(intent, counter.getCounterDate().toString());
 
                 context.startActivity(intent);
             }
@@ -130,11 +131,12 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditCounterActivity.class);
-                intent.putExtra("counterId", String.valueOf(i));
-                intent.putExtra("counterName", counter.getCounterName());
-                intent.putExtra("counterComment", counter.getCounterComment());
-                intent.putExtra("counterCurrentValue", String.valueOf(counter.getCurrentValue()));
-                intent.putExtra("counterInitialValue", String.valueOf(counter.getInitialValue()));
+
+                putNameInIntent(intent, counter.getCounterName());
+                putCommentInIntent(intent, counter.getCounterComment());
+                putCurrentValueInIntent(intent, counter.getCurrentValue());
+                putInitialValueInIntent(intent, counter.getInitialValue());
+                putIdInIntent(intent, i);
 
                 ((Activity) context).startActivityForResult(intent, EDIT_COUNTER_ACTIVITY );
             }
@@ -152,18 +154,25 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         return view;
     }
 
+
+
     /**
      * Called when startActivityForResult is finished, takes the extra data in intent put in
      * by child activity and uses it to update the current counter with new information
      * @param data Intent created by the child activity, contains user inputted information
      */
-    public  void onActivityResult(Intent data) {
-        Counter counter = counterList.get(Integer.parseInt(data.getStringExtra("counterId")));
+    public void onActivityResult(Intent data) {
+        int id = 0;
+        try{
+            id = getIdFromIntent(data);
+        }
+        catch (NumberFormatException e) {
+            return;
+        }
+        Counter counter = counterList.get(id);
 
-        String newName = data.getStringExtra("counterName");
-        String newComment = data.getStringExtra("counterComment");
-        String newCurrentValue = data.getStringExtra("counterCurrentValue");
-        String newInitialValue = data.getStringExtra("counterInitialValue");
+        String newName = getNameFromIntent(data);
+        String newComment = getCommentFromIntent(data);
 
         // Name must not be empty, if it is, don't update the name
         if(!"".equals(newName.trim())) {
@@ -171,21 +180,121 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         }
 
         // Comment may be empty and cleared
-        if("".equals(newComment.trim())) {
-            counter.editComment("");
-        }
-        else {
-            counter.editComment(newComment);
-        }
+        counter.editComment(newComment);
 
-        // Current value must be non-negative number, cannot be empty
-        if(!"".equals(newCurrentValue.trim())) {
-            counter.editCurrentValue(Integer.parseInt(newCurrentValue));
+        try {
+            counter.editCurrentValue(getCurrentValueFromIntent(data));
         }
+        catch(NumberFormatException e) {
+            // don't update if value gotten is not a number or parsable
+        }
+        try {
+            counter.editInitialValue(getInitialValueFromIntent(data));
+        }
+        catch(NumberFormatException e) {
+            // don't update if value gotten is not a number or parsable
+        }
+    }
 
-        // Initial value must be non-negative number, cannot be empty
-        if (!"".equals(newInitialValue.trim())) {
-            counter.editInitialValue(Integer.parseInt(newInitialValue));
-        }
+    /**
+     * Gets the counter name from an intent's extra data
+     * @param intent Intent which holds a counter's name
+     * @return String of the counter's name
+     */
+    private String getNameFromIntent(Intent intent) {
+        return intent.getStringExtra("counterName");
+    }
+
+    /**
+     * Gets the counter comment from an intent's extra data
+     * @param intent Intent which holds a counter's comment
+     * @return String of the counter's comment
+     */
+    private String getCommentFromIntent(Intent intent) {
+        return intent.getStringExtra("counterComment");
+    }
+
+    /**
+     * Gets the counter current value from an intent's extra data
+     * @param intent Intent which holds a counter's current value
+     * @return Int of the counter's current value
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private int getCurrentValueFromIntent(Intent intent) throws NumberFormatException {
+        return Integer.parseInt(intent.getStringExtra("counterCurrentValue"));
+    }
+
+    /**
+     * Gets the counter initial value from an intent's extra data
+     * @param intent Intent which holds a counter's initial value
+     * @return Int of the counter's initial value
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private int getInitialValueFromIntent(Intent intent) throws NumberFormatException {
+        return Integer.parseInt(intent.getStringExtra("counterInitialValue"));
+    }
+
+    /**
+     * Gets the id of the counter from the intent's extra data
+     * @param intent Intent which holds a counter's id
+     * @return Int of the counter's id
+     * @throws NumberFormatException If the string in the intent can't be parsed, throw exception
+     */
+    private int getIdFromIntent(Intent intent) throws NumberFormatException{
+        return Integer.parseInt(intent.getStringExtra("counterId"));
+    }
+
+    /**
+     * Puts a string into the name field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param name String of the name you want to send
+     */
+    private void putNameInIntent(Intent intent, String name) {
+        intent.putExtra("counterName", name);
+    }
+
+    /**
+     * Puts a string into the comment field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param comment String of the comment you want to send
+     */
+    private void putCommentInIntent(Intent intent, String comment) {
+        intent.putExtra("counterComment", comment);
+    }
+
+    /**
+     * Puts a int into the current value field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param currentValue Int of the current value you want to send
+     */
+    private void putCurrentValueInIntent(Intent intent, int currentValue) {
+        intent.putExtra("counterCurrentValue", String.valueOf(currentValue));
+    }
+
+    /**
+     * Puts a int into the initial value field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param initialValue Int of the initial value you want to send
+     */
+    private void putInitialValueInIntent(Intent intent, int initialValue) {
+        intent.putExtra("counterInitialValue", String.valueOf(initialValue));
+    }
+
+    /**
+     * Puts a Date into the date field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param date Date object of the date you want to send
+     */
+    private void putDateInIntent(Intent intent, String date) {
+        intent.putExtra("counterDate", date);
+    }
+
+    /**
+     * Puts a int into the id field of intent's extra data
+     * @param intent Intent  you want filled
+     * @param id Int of the id you want to send
+     */
+    private void putIdInIntent(Intent intent, int id) {
+        intent.putExtra("counterId", String.valueOf(id));
     }
 }

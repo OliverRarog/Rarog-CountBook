@@ -56,7 +56,7 @@ public class AddCounterActivity extends AppCompatActivity {
         String nameField = counterNameEditText.getText().toString();
         String valueField = counterValueEditText.getText().toString();
 
-        if(verifyNameField(nameField) || verifyValueField(valueField) ) {
+        if(nameFieldEmpty(nameField) || valueFieldEmpty(valueField) ) {
             createButton.setEnabled(false);
         }
         else {
@@ -65,20 +65,20 @@ public class AddCounterActivity extends AppCompatActivity {
     }
 
     /**
-     * Verifies that the counter name is properly filled
+     * Checks if the name field of activity is empty
      * @param name The name the user typed in the box
-     * @return Boolean indicating whether name is valid
+     * @return Boolean indicating whether name is empty
      */
-    private Boolean verifyNameField(String name) {
+    private Boolean nameFieldEmpty(String name) {
         return name.trim().isEmpty();
     }
 
     /**
-     * Verifies that the initial value is properly filled (non-negative integer)
+     * Verifies that the initial value is empty (or non-negative integer)
      * @param value Value the user typed in
-     * @return Boolean indicating whether value is valid
+     * @return Boolean indicating whether value is invalid
      */
-    private Boolean verifyValueField(String value) {
+    private Boolean valueFieldEmpty(String value) {
         // checks that user typed in a non-negative number, no non-numeric characters allowed
         return (Integer.getInteger(value) != null && Integer.getInteger(value) >= 0);
     }
