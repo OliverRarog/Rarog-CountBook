@@ -34,6 +34,10 @@ public class Counter {
         return currentValue;
     }
 
+    public int getInitialValue() {
+        return initialValue;
+    }
+
     public String getCounterName() {
         return counterName;
     }
@@ -48,32 +52,47 @@ public class Counter {
 
     public void incrementCurrentValue() {
         currentValue += 1;
+        updateDate();
     }
 
     public void decrementCurrentValue() {
         if(currentValue >= 1) {
             currentValue -= 1;
+            updateDate();
         }
     }
 
     public void resetCurrentValue() {
         currentValue = initialValue;
+        updateDate();
     }
 
     public void editCounterName(String newName) {
         counterName = newName;
+        updateDate();
     }
 
     public void editCurrentValue(int newValue) {
-        currentValue = newValue;
+        if(newValue >= 0) {
+            currentValue = newValue;
+            updateDate();
+        }
     }
 
     public void editInitialValue(int newValue) {
-        initialValue = newValue;
+        if(newValue >= 0) {
+            initialValue = newValue;
+            updateDate();
+        }
     }
 
     public void editComment(String newComment) {
         comment = newComment;
+        updateDate();
+    }
+
+    public void updateDate() {
+        date = new Date();
     }
 
 

@@ -99,7 +99,6 @@ public class MainActivity extends Activity {
             }
         }
         catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             counterList = new ArrayList<>();
         }
     }
@@ -117,7 +116,6 @@ public class MainActivity extends Activity {
             fos.close();
         }
         catch (IOException e) {
-            // TODO Auto-generated catch block
             throw new RuntimeException();
         }
     }

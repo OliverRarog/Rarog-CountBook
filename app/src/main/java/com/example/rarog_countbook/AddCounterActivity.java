@@ -79,7 +79,7 @@ public class AddCounterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameText = counterNameEditText.getText().toString();
                 String commentText = counterCommentEditText.getText().toString();
-                int value = Integer.parseInt(counterValueEditText.getText().toString());
+                Integer value = Integer.parseInt(counterValueEditText.getText().toString());
 
                 Intent intent = getIntent();
                 intent.putExtra("nameText", nameText);

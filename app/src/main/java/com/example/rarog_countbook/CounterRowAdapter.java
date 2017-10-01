@@ -1,6 +1,7 @@
 package com.example.rarog_countbook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,14 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         viewButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, ViewCounterActivity.class);
+                intent.putExtra("counterName", counter.getCounterName());
+                intent.putExtra("counterComment", counter.getCounterComment());
+                intent.putExtra("counterDate", counter.getCounterDate().toString());
+                intent.putExtra("counterCurrentValue", String.valueOf(counter.getCurrentValue()));
+                intent.putExtra("counterInitialValue", String.valueOf(counter.getInitialValue()));
+
+                context.startActivity(intent);
             }
         });
 
@@ -113,10 +122,12 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         return view;
     }
 
+
+
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
-        //saveInFile()
+
     }
 
 }
