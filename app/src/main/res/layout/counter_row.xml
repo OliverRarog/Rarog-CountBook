@@ -99,7 +99,7 @@
         app:layout_constraintBottom_toTopOf="@+id/increment_button"/>
 
     <TextView
-        android:id="@+id/counterRowComment"
+        android:id="@+id/counterRowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/counterRowName"

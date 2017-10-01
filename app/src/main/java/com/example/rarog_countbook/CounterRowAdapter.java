@@ -68,8 +68,8 @@ public class CounterRowAdapter extends BaseAdapter implements ListAdapter{
         final TextView counterRowName = view.findViewById(R.id.counterRowName);
         counterRowName.setText(counter.getCounterName());
 
-        TextView counterRowComment = view.findViewById(R.id.counterRowComment);
-        counterRowComment.setText(" - " + counter.getCounterComment());
+        TextView counterRowDate = view.findViewById(R.id.counterRowDate);
+        counterRowDate.setText(" - " + counter.getCounterDate());
 
         /* Initializes each button in the row */
         Button incrementButton = view.findViewById(R.id.increment_button);
